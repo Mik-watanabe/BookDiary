@@ -1,21 +1,24 @@
 "use client";
+require("dotenv").config();
+// remove this after
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+let APIKEY = process.env.APIKEY;
 //Receives a genre as a prop, calls the api with it, and shows the receieved books.
 export default function BooksOfGenre(props) {
-  //Lon, Lat API 'http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={e9dc30a76caa67c782fb10c3ba6c49a1}'
-  let bookApi =
-    `https://www.googleapis.com/books/v1/volumes?q=subject:${props.genre}&key=AIzaSyBZXbZPX-12tWacIAjBgXWSpvLDHg50Bt4`;
   let [bookData, setBookData] = useState();
+  let [fetched, setFetched] = useState();
+
   useEffect(() => {
-    axios({
-      method: "get",
-      url: bookApi,
-      responseType: "json",
-    }).then((response) => {
-      setBookData(response.data);
-    });
+    (async () => {
+        let response = await fetch("/getbooks", {
+          method: "POST",
+          body: JSON.stringify({ genre: props.genre }),
+        })
+        let data = await response.json();
+        setBookData(data);
+    })();
   }, []);
 
   return bookData ? (
@@ -28,8 +31,12 @@ export default function BooksOfGenre(props) {
             <div className=" w-[25%] carousel-item">
               <figure>
                 <img
-                //Returns another image saying "Image not found" if the api does not return any image links. Size has been
-                  src={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg" }
+                  //Returns another image saying "Image not found" if the api does not return any image links. Size has been
+                  src={
+                    book.volumeInfo.imageLinks
+                      ? book.volumeInfo.imageLinks.thumbnail
+                      : "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
+                  }
                   className="w-[10vw]"
                   alt={book.volumeInfo.title}
                 />
