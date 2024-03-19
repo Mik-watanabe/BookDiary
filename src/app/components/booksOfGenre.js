@@ -12,12 +12,13 @@ export default function BooksOfGenre(props) {
 
   useEffect(() => {
     (async () => {
-        let response = await fetch("/getbooks", {
-          method: "POST",
-          body: JSON.stringify({ genre: props.genre }),
-        })
-        let data = await response.json();
-        setBookData(data);
+      console.log(props.genre);
+      let response = await axios({
+        method: "post",
+        url: "/getbooks",
+        data: { query: `subject:${props.genre}` },
+      });
+      setBookData(response.data);
     })();
   }, []);
 
