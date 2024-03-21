@@ -8,18 +8,17 @@ let APIKEY = process.env.APIKEY;
 //Receives a genre as a prop, calls the api with it, and shows the receieved books.
 export default function BooksOfGenre(props) {
   let [bookData, setBookData] = useState();
-  let [fetched, setFetched] = useState();
 
   useEffect(() => {
-    (async () => {
-      console.log(props.genre);
+    const fetchData = async () => {
       let response = await axios({
         method: "post",
         url: "/getbooks",
         data: { query: `subject:${props.genre}` },
       });
       setBookData(response.data);
-    })();
+    }
+    fetchData();
   }, []);
 
   return bookData ? (
@@ -27,7 +26,6 @@ export default function BooksOfGenre(props) {
       <h1 className="mb-4 text-4xl font-extrabold">{props.genre}</h1>
       <div className="carousel carousel-left p-4 space-x-4 bg-neutral">
         {bookData.items.map((book) => {
-          console.log(book);
           return (
             <div className=" w-[25%] carousel-item">
               <figure>
