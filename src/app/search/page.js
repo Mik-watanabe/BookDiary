@@ -7,10 +7,8 @@ import { useSearchParams } from "next/navigation";
 export default function Search() {
   const searchParams = useSearchParams();
   let [books, setBooks] = useState();
-
   //The default startIndex used by the api is 0
   let [startIndex, setStartIndex] = useState(0);
-
   const title = searchParams.get("title");
 
   useEffect(() => {
@@ -19,7 +17,7 @@ export default function Search() {
         query: `intitle:${title}`,
       });
       setBooks(response.data);
-    }
+    };
     fetchData();
   }, []);
 
@@ -27,10 +25,18 @@ export default function Search() {
     <>
       <Navbar />
       {books
-        ? books.items.map((book) => {
-            console.log(book);
-            return <h1 key={book.id}>{book.volumeInfo.title} - {book.volumeInfo.authors? book.volumeInfo.authors[0] : "No author found"}</h1>;
-          })
+        ? books.items
+          ? books.items.map((book) => {
+              return (
+                <h1 key={book.id}>
+                  {book.volumeInfo.title} -{" "}
+                  {book.volumeInfo.authors
+                    ? book.volumeInfo.authors[0]
+                    : "No author found"}
+                </h1>
+              );
+            })
+          : "No results found"
         : "Fetching..."}
     </>
   );
