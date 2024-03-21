@@ -3,7 +3,6 @@ import axios from "axios";
 
 let APIKEY = process.env.APIKEY;
 
-
 //Recieves a query string and returns the googleapis result of that query as the response.
 export async function POST(request) {
   const data = await request.json();
