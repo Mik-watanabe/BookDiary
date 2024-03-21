@@ -1,12 +1,37 @@
 "use client";
-
+import axios from "axios";
+import Navbar from "@/app/components/navbar";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function Search() {
   const searchParams = useSearchParams();
+  let [books, setBooks] = useState();
 
-  const genre = searchParams.get("genre");
-  if (genre !== null){
-  }
-  return <>{genre}</>;
+  //The default startIndex used by the api is 0
+  let [startIndex, setStartIndex] = useState(0);
+
+  const title = searchParams.get("title");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let response = await axios.post("/getbooks", {
+        query: `intitle:${title}`,
+      });
+      setBooks(response.data);
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <>
+      <Navbar />
+      {books
+        ? books.items.map((book) => {
+            console.log(book);
+            return <h1 key={book.id}>{book.volumeInfo.title} - {book.volumeInfo.authors? book.volumeInfo.authors[0] : "No author found"}</h1>;
+          })
+        : "Fetching..."}
+    </>
+  );
 }
