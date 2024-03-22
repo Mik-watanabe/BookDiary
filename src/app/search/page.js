@@ -19,7 +19,7 @@ export default function Search() {
       setBooks(response.data);
     };
     fetchData();
-  }, []);
+  }, [title]);
 
   return (
     <>
