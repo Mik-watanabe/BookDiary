@@ -1,5 +1,5 @@
 import Navbar from '@/app/components/navbar'
-import BooksOfGenre from '@/app/components/booksOfGenre'
+import BooksOfGenre from '@/app/booksOfGenre'
 
 export default function App(){
   return (<div>
