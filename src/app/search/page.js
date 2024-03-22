@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "@/app/components/navbar";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from 'next/link';
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -28,12 +29,14 @@ export default function Search() {
         ? books.items
           ? books.items.map((book) => {
               return (
-                <h1 key={book.id}>
-                  {book.volumeInfo.title} -{" "}
-                  {book.volumeInfo.authors
-                    ? book.volumeInfo.authors[0]
-                    : "No author found"}
-                </h1>
+                <Link href={`/book/${book.id}`} className="w-full flex">
+                  <h1 key={book.id}>
+                    {book.volumeInfo.title} -{" "}
+                    {book.volumeInfo.authors
+                      ? book.volumeInfo.authors[0]
+                      : "No author found"}
+                  </h1>
+                </Link>
               );
             })
           : "No results found"
