@@ -25,7 +25,7 @@ export default function BooksOfGenre(props) {
   return bookData ? (
     <div>
       <h1 className="mb-4 text-4xl font-extrabold">{props.genre}</h1>
-      <div className="carousel carousel-left p-4 space-x-4 bg-neutral">
+      <div className="carousel carousel-left p-4 space-x-4">
         {
           //Returns "No results found if no matching results are found
           bookData.items
