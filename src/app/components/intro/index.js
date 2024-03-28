@@ -4,8 +4,10 @@ import SearchBar from "@/app/components/searchBar";
 export default function Intro({ children }) {
   return (
     <>
-      <div className="flex flex-col items-center">{children}</div>
-      <SearchBar/>
+      <div className="flex flex-col items-center w-screen">
+        {children}
+        <SearchBar />
+      </div>
     </>
   );
 }
