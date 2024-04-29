@@ -4,7 +4,7 @@ import SearchBar from "@/app/components/searchBar";
 export default function Intro(props) {
   return (
     <>
-      <div className={`flex flex-col items-center w-screen h-[450px] justify-between ${props.className}`}>
+      <div className={`flex flex-col items-center h-[450px] justify-between ${props.className}`}>
         {props.children}
         <SearchBar />
       </div>
