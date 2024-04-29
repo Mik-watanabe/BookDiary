@@ -26,7 +26,7 @@ export default function BooksOfGenre(props) {
     <div className={props.className}>
       <h1 className="mb-4 text-4xl text-center">{props.genre}</h1>
       <div className="w-screen overflow-y-scroll">
-        <div className="flex flex-row w-fit ml-[30px]">
+        <div className="flex flex-row w-fit ml-[30px] items-end">
           {
             //Returns "No results found if no matching results are found
             bookData.items
@@ -34,7 +34,7 @@ export default function BooksOfGenre(props) {
                   console.log(book);
                   return (
                     <div
-                      className="w-[400px] box-border m-[20px]"
+                      className="w-[200px] box-border p-[20px] h-[90%]"
                       key={book.id}
                     >
                       <Link
@@ -54,7 +54,7 @@ export default function BooksOfGenre(props) {
                           alt={book.volumeInfo.title}
                         />
                         {/*TODO: make the text overflow hidden*/}
-                        <h2 className="">{book.volumeInfo.title}</h2>
+                        <h2 className="truncate text-center">{book.volumeInfo.title}</h2>
                       </Link>
                     </div>
                   );
