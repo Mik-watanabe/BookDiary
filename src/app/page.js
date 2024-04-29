@@ -14,10 +14,13 @@ export default function App() {
           test test test test test
         </span>
       </Intro>
-      <Divider className="mt-[20vh]"/>
-      <BooksOfGenre genre="Fiction" className="mt-[15vh]"/>
-      <Divider className="mt-[20vh]"/>
-      <BooksOfGenre genre="Fantasy" className="mt-[15vh]"/>
+      <Divider className="my-[50px]" />
+      <BooksOfGenre genre="Fiction" />
+      <Divider className="my-[50px]" />
+      <BooksOfGenre genre="Fantasy"/>
+      <footer className="bottom-0">
+      <Divider className="my-[50px]" />
+      </footer>
     </div>
   );
 }
