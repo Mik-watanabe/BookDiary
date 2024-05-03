@@ -8,8 +8,8 @@ export default function App() {
     <div className="text-white">
       <Navbar></Navbar>
       <Intro className="pt-[150px]">
-        <span className="text-[42px]  ">Welcome to the Book Diary</span>
-        <span className="text-[32px] w-[516px] text-center">
+        <span className="text-[42px] leading-none">Welcome to the Book Diary</span>
+        <span className="text-[32px] w-[516px] mt-[40px] text-center">
           test test test test test test test test test test test test test test
           test test test test test
         </span>
