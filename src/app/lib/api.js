@@ -14,3 +14,5 @@ export async function fetchBookData(bookId) {
         throw error;
     }
 }
+
+// TODO: move to app directory and make api folders
