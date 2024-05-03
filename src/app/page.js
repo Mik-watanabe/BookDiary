@@ -7,7 +7,7 @@ export default function App() {
   return (
     <div className="text-white">
       <Navbar></Navbar>
-      <Intro className="pt-[150px]">
+      <Intro className="my-[150px]">
         <span className="text-[42px] leading-none">Welcome to the Book Diary</span>
         <span className="text-[32px] w-[516px] mt-[40px] text-center">
           test test test test test test test test test test test test test test
