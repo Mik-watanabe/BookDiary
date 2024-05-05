@@ -8,7 +8,6 @@ export async function POST(request) {
   const data = await request.json();
   let query = data.query;
   let bookApi = `https://www.googleapis.com/books/v1/volumes?${query}&key=${APIKEY}`;
-  console.log(bookApi)
   const books = await axios({
     method: "get",
     url: bookApi,
