@@ -3,9 +3,9 @@ import axios from "axios";
 import Navbar from "@/app/components/navbar";
 import Intro from "@/app/components/intro";
 import Divider from "@/app/components/divider";
+import Book from "@/app/search/book";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -17,10 +17,10 @@ export default function Search() {
   useEffect(() => {
     const fetchData = async () => {
       let response = await axios.post("/getbooks", {
-        query: `q=intitle:${title}&startIndex=${startIndex}&maxResults=10`,
+        query: `q=intitle:${title}&startIndex=${startIndex}&maxResults=5`,
       });
-      console.log(response);
       setBooks(response.data);
+      console.log(response.data.items.length)
     };
     fetchData();
   }, [title, startIndex]);
@@ -31,30 +31,51 @@ export default function Search() {
       <Intro className="my-[100px]">
         <span className="text-[42px]  ">Find a Book here</span>
       </Intro>
-      <Divider className="mb-[30px]"/>
+      <Divider className="mb-[30px]" />
       <div>
-        {books
-          ? books.items
-            ? <>
-            <div className='flex justify-center mb-[30px]'>
-              Found {books.totalItems} matches for "{title}"
-            </div>
-            {books.items.map((book) => {
+        {books ? (
+          books.items ? (
+            <>
+              <div className="flex justify-center mb-[30px]">
+                Found {books.totalItems} matches for "{title}"
+              </div>
+              {books.items.slice(0,4).map((book) => {
                 return (
-                  <Link href={`/book/${book.id}`} className="w-full flex">
-                    <h1 key={book.id}>
-                      {book.volumeInfo.title} -{" "}
-                      {book.volumeInfo.authors
-                        ? book.volumeInfo.authors[0]
-                        : "No author found"}
-                    </h1>
-                  </Link>
+                  <div key={book.id}>
+                    <Book
+                      book={book}
+                      className="ml-[20px] my-[15px]"
+                    />
+                    <Divider className="h-[1px]" />
+                    </div>
                 );
               })}
-              </>
-            : "No results found"
-          : "Fetching..."}
-          <button className="bg-black" onClick={() => {setStartIndex(startIndex + 1)}}>Next</button>
+                <button
+                  className={`h-10 text-xl border border-white rounded-lg px-2 mt-2 float-left ${startIndex == 0 ? "disabled cursor-not-allowed" : ""}`}
+                  onClick={() => {
+                    startIndex - 4 >= 0 && setStartIndex(startIndex - 4);
+                  }}
+                >
+                  Prev
+                </button>
+                <button
+                  className={`h-10 text-xl border border-white rounded-lg px-2 mt-2 float-right ${books.items.length < 5 ? "disabled cursor-not-allowed" : ""}`}
+                  onClick={() => {
+                    startIndex + 4 < books.totalItems &&
+                      setStartIndex(startIndex + 4);
+                  }}
+                >
+                  Next
+                </button>
+                {/* Clears the float so that the margin-bottom property set in app/layout.js is applied properly */}
+                <div className="clear-both"/>
+            </>
+          ) : (
+            "No results found"
+          )
+        ) : (
+          "Fetching..."
+        )}
       </div>
     </div>
   );
