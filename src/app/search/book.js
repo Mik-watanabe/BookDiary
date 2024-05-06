@@ -1,14 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-// const description = {
-//   "overflow": "hidden",
-//   "display": "-webkit-box",
-//   "-webkit-line-clamp": 2, /* number of lines to show */
-//           "line-clamp": 2, 
-//   "-webkit-box-orient": "vertical"
-// }
-
 //A single book display on the search page
 export default function Book(props) {
   const { book } = props;
@@ -40,7 +32,7 @@ export default function Book(props) {
             ? book.volumeInfo.authors[0]
             : "No author found"}
         </h3>
-        <p className="overflow-clip text-wrap">{book.volumeInfo.description}</p>
+        <div className="line-clamp-5">{book.volumeInfo.description}</div>
       </div>
     </div>
   );
