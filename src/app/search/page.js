@@ -36,8 +36,8 @@ export default function Search() {
         {books ? (
           books.items ? (
             <>
-              <div className="flex justify-center mb-[30px]">
-                Found {books.totalItems} matches for "{title}"
+              <div className="flex justify-center mb-[30px] text-xl">
+                Results for "{title}"
               </div>
               {books.items.slice(0,4).map((book) => {
                 return (
