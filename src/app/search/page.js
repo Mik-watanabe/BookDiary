@@ -12,15 +12,13 @@ export default function Search() {
 
   const [fetching, setFetching] = useState(true);
 
-  //Set to false if there are no more books available to fetch
-  const [moreBooks, setMoreBooks] = useState(true);
-
   const [books, setBooks] = useState([]);
 
-  //The default startIndex used by the api is 0
-  const [startIndex, setStartIndex] = useState(0);
+  //Stores total number of books returned
+  const [totalBooks, setTotalBooks] = useState(true);
 
-  const [numBooksToDisplay, setNumBooksToDisplay] = useState(4);
+  //Stores number of books to display
+  const [booksDisplayed, setBooksDisplayed] = useState(4);
 
   const title = searchParams.get("title");
 
@@ -31,11 +29,12 @@ export default function Search() {
         query: `q=intitle:${title}&maxResults=40`,
       });
       setBooks(response.data.items);
+      setTotalBooks(response.data.items.length)
       setFetching(false);
     };
     fetchData();
-  }, [title, startIndex]);
-  
+  }, [title]);
+
   return (
     <div className="text-white">
       <Navbar />
@@ -50,7 +49,7 @@ export default function Search() {
           <div className="flex justify-center mb-[30px] text-xl">
             Results for "{title}"
           </div>
-          {books.slice(0, numBooksToDisplay).map((book) => {
+          {books.slice(0, booksDisplayed).map((book) => {
             return (
               <div key={book.id}>
                 <Book book={book} className="ml-[20px] my-[15px]" />
@@ -58,31 +57,12 @@ export default function Search() {
               </div>
             );
           })}
-          {/* <button
-                  className={`h-10 text-xl border border-white rounded-lg px-2 mt-2 float-left ${startIndex == 0 ? "disabled cursor-not-allowed" : ""}`}
-                  onClick={() => {
-                    startIndex - 4 >= 0 && setStartIndex(startIndex - 4);
-                  }}
-                >
-                  Prev
-                </button>
-                <button
-                  className={`h-10 text-xl border border-white rounded-lg px-2 mt-2 float-right ${books.items.length < 5 ? "disabled cursor-not-allowed" : ""}`}
-                  onClick={() => {
-                    startIndex + 4 < books.totalItems &&
-                      setStartIndex(startIndex + 4);
-                  }}
-                >
-                  Next
-                </button> */}
-
-          {/* Infinite scroll */}
           <button
             className={`h-10 w-full text-xl border border-white rounded-lg px-2 mt-2 ${
-              !moreBooks ? "disabled cursor-not-allowed" : ""
+              booksDisplayed >= totalBooks ? "disabled cursor-not-allowed" : ""
             }`}
             onClick={() => {
-              setNumBooksToDisplay(numBooksToDisplay + 4);
+              setBooksDisplayed(booksDisplayed + 4);
             }}
           >
             Load more
