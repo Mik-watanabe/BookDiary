@@ -4,7 +4,6 @@ import Image from "next/image";
 //A single book display on the search page
 export default function Book(props) {
   const { book } = props;
-  console.log(book);
   return (
     <div className={`flex flex-row h-[200px] ${props.className}`}>
       <div>

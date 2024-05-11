@@ -32,7 +32,6 @@ export default function BooksOfGenre(props) {
             //Returns "No results found if no matching results are found
             bookData.items
               ? bookData.items.map((book) => {
-                  console.log(book);
                   return (
                     <Link
                       href={`/book/${book.id}`}
