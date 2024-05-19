@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 //Redirects to search page with the input only if the search input is non empty
-export default function Search() {
+export default function Search(props) {
   const router = useRouter();
 
   function handleSubmit(e) {
@@ -18,7 +18,7 @@ export default function Search() {
   }
 
   return (
-    <>
+    <div className={props.className}>
       <form
         onSubmit={handleSubmit}
         className="w-[600px] h-[56px] rounded-[50px] bg-white"
@@ -32,6 +32,6 @@ export default function Search() {
           className="bg-inherit h-full w-[90%] rounded-r-[50px] focus:outline-none text-black"
         ></input>
       </form>
-    </>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ let APIKEY = process.env.APIKEY;
 export async function POST(request) {
   const data = await request.json();
   let query = data.query;
-  let bookApi = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${APIKEY}`;
+  let bookApi = `https://www.googleapis.com/books/v1/volumes?${query}&key=${APIKEY}`;
   const books = await axios({
     method: "get",
     url: bookApi,
