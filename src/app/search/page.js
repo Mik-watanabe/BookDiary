@@ -47,7 +47,7 @@ export default function Search() {
       ) : books.length > 0 ? (
         <>
           <div className="flex justify-center mb-[30px] text-xl">
-            Results for "{title}"
+            Results for &quot;{title}&quot;
           </div>
           {books.slice(0, booksDisplayed).map((book) => {
             return (
