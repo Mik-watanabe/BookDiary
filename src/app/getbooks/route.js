@@ -11,6 +11,6 @@ export async function POST(request) {
   const books = await axios({
     method: "get",
     url: bookApi,
-  }).then(resp => resp.data);
+  }).then((resp) => resp.data);
   return Response.json(books);
 }

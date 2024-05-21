@@ -27,7 +27,8 @@ export default function Book(props) {
           <h2 className="text-[30px]">{book.volumeInfo.title}</h2>
         </Link>
         <h3 className="text-[20px]">
-          Author: {book.volumeInfo.authors
+          Author:{" "}
+          {book.volumeInfo.authors
             ? book.volumeInfo.authors[0]
             : "No author found"}
         </h3>

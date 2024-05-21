@@ -29,7 +29,7 @@ export default function Search() {
         query: `q=intitle:${title}&maxResults=40`,
       });
       setBooks(response.data.items);
-      setTotalBooks(response.data.items.length)
+      setTotalBooks(response.data.items.length);
       setFetching(false);
     };
     fetchData();

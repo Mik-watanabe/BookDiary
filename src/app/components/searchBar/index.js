@@ -24,7 +24,13 @@ export default function Search(props) {
         className="w-[600px] h-[56px] rounded-[50px] bg-white"
       >
         <button className="inline w-[10%] h-full">
-          <Image src={searchIcon} width={10} height={10} className="w-full p-[14px] h-full inline" alt="Search Icon"/>
+          <Image
+            src={searchIcon}
+            width={10}
+            height={10}
+            className="w-full p-[14px] h-full inline"
+            alt="Search Icon"
+          />
         </button>
         <input
           name="title"
