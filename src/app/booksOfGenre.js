@@ -17,11 +17,11 @@ export default function BooksOfGenre(props) {
         url: "/getbooks",
         data: { query: `q=subject:${props.genre}` },
       });
-      
+
       setBookData(response.data);
     };
     fetchData();
-  }, []);
+  }, [props.genre]);
 
   return bookData ? (
     <div className={props.className}>
