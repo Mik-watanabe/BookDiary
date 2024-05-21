@@ -6,7 +6,7 @@ export default function Intro(props) {
     <>
       <div className={`flex flex-col items-center ${props.className}`}>
         {props.children}
-        <SearchBar className="mt-[40px]"/>
+        <SearchBar className="mt-[40px]" />
       </div>
     </>
   );

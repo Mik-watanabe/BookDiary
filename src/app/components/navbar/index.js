@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <>
       <div className="h-[54px] flex items-center pl-[40px]">
-        <Image src={bookDiaryLogo} className="" alt="BookDiary Logo"/>
+        <Image src={bookDiaryLogo} className="" alt="BookDiary Logo" />
       </div>
     </>
   );

@@ -8,7 +8,9 @@ export default function App() {
     <div className="text-white">
       <Navbar></Navbar>
       <Intro className="my-[150px]">
-        <span className="text-[42px] leading-none">Welcome to the Book Diary</span>
+        <span className="text-[42px] leading-none">
+          Welcome to the Book Diary
+        </span>
         <span className="text-[32px] w-[516px] mt-[40px] text-center">
           test test test test test test test test test test test test test test
           test test test test test
@@ -17,9 +19,9 @@ export default function App() {
       <Divider className="my-[50px]" />
       <BooksOfGenre genre="Fiction" />
       <Divider className="my-[50px]" />
-      <BooksOfGenre genre="Fantasy"/>
+      <BooksOfGenre genre="Fantasy" />
       <footer className="bottom-0">
-      <Divider className="my-[50px]" />
+        <Divider className="my-[50px]" />
       </footer>
     </div>
   );

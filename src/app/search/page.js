@@ -6,8 +6,9 @@ import Divider from "@/app/components/divider";
 import Book from "@/app/search/book";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function Search() {
+function SearchContent() {
   const searchParams = useSearchParams();
 
   const [fetching, setFetching] = useState(true);
@@ -29,7 +30,7 @@ export default function Search() {
         query: `q=intitle:${title}&maxResults=40`,
       });
       setBooks(response.data.items);
-      setTotalBooks(response.data.items.length)
+      setTotalBooks(response.data.items.length);
       setFetching(false);
     };
     fetchData();
@@ -47,7 +48,7 @@ export default function Search() {
       ) : books.length > 0 ? (
         <>
           <div className="flex justify-center mb-[30px] text-xl">
-            Results for "{title}"
+            Results for &quot;{title}&quot;
           </div>
           {books.slice(0, booksDisplayed).map((book) => {
             return (
@@ -74,5 +75,13 @@ export default function Search() {
         "No results found"
       )}
     </div>
+  );
+}
+
+export default function Search() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }

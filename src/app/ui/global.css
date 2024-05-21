@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./books.jpg");
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./books.jpg");
   background-size: cover;
   background-attachment: fixed;
 }

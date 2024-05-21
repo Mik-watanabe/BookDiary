@@ -1,5 +1,5 @@
-import { inter } from '@/app/ui/fonts';
-import '@/app/ui/global.css'
+import { inter } from "@/app/ui/fonts";
+import "@/app/ui/global.css";
 
 export const metadata = {
   title: "Book Diary",
@@ -9,8 +9,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} mx-[20px] mb-[10px] box-content min-h-screen`}>{children}</body>
+      <body
+        className={`${inter.className} mx-[20px] mb-[10px] box-content min-h-screen`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
-
