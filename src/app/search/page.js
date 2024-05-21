@@ -6,8 +6,9 @@ import Divider from "@/app/components/divider";
 import Book from "@/app/search/book";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function Search() {
+function SearchContent() {
   const searchParams = useSearchParams();
 
   const [fetching, setFetching] = useState(true);
@@ -74,5 +75,13 @@ export default function Search() {
         "No results found"
       )}
     </div>
+  );
+}
+
+export default function Search() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchContent />
+    </Suspense>
   );
 }
