@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useState } from "react";
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -7,12 +8,19 @@ export default function Signup() {
     if (username.length == 0) {
       alert("Username cannot be empty!");
       return;
-    } 
+    }
     if (password.length < 8) {
       alert("The password must be at least 8 characters!");
       return;
     }
-    fetch("/userRoute", {method: "POST", headers:{"Content-Type": "application/json"}})
+    axios({
+      method: "post",
+      url: "/user",
+      data: {
+        username: username,
+        password: password,
+      },
+    });
   };
   return (
     <div className="text-black">
