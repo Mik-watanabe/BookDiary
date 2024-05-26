@@ -18,6 +18,7 @@ let userSchema = new Schema({
 
 let User = mongoose.model('users', userSchema)
 
-export async function POST(request){
-    
+export async function POST(request, response){
+    console.log(request);
+    return Response.json({message: "Successfully posted"})
 }
