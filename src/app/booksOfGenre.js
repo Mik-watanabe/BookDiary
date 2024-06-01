@@ -26,7 +26,8 @@ export default function BooksOfGenre(props) {
   return bookData ? (
     <div className={props.className}>
       <h1 className="mb-4 text-4xl text-center">{props.genre}</h1>
-      <div className="overflow-y-scroll">
+      <div className="overflow-x-scroll genre-display">
+        {/* Genre display class removes the scrollbar bar, css applied in globals.css */}
         <div className="flex flex-row w-fit ml-[30px] items-end">
           {
             //Returns "No results found if no matching results are found
